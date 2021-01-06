@@ -1,0 +1,77 @@
+= Softwareentwicklung im Team: Praktische Übung 7
+:icons: font
+:icon-set: fa
+:experimental:
+:source-highlighter: rouge
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:stem: latexmath
+endif::[]
+
+== Vorbereitung 
+
+Die Vorbereitungsarbeiten müssen Sie *vor der praktischen Übung* abschließen. 
+ 
+Wir erwarten von Ihnen, dass Sie verstanden haben, wie Sie Tests für Controller und Ende-zu-Ende Tests für Spring Boot Webanwendungen schreiben. Sie sollten außerdem verstanden haben, welche Teile einer Webanwendung in Controllern bzw. Services untergebracht werden. Sie sollten außerdem auch Fehlerbehandlung in Webanwendungen verstanden haben. 
+
+== Ziele der Übung
+
+In der Übung sollen Sie hauptsächlich das Thema Ende-zu-Ende und Controllertests vertiefen.   
+
+== Aufgabe
+
+In der Anwendung kann eine Kontaktliste für einen Index angelegt und dann können Kontaktpersonen hinzugefügt und gelöscht werden. 
+
+=== Umgang mit der Datenbank
+
+Die Anwendung verwendet eine H2 Datenbank und Spring Data JDBC. Das Thema Datenbanken werden wir demnächst auch noch angehen, für das Erste können Sie aber mit dem gegebenen Code arbeiten. Es ist wichtig, dass Sie keine Änderungen an den Klassen im Package `covidtracer.model` vornehmen, da sonst, je nach Änderung, die Datenbank nicht mehr funktioniert.
+
+Die Datenbankinhalte werden beim Neustart der Anwendung gelöscht und es werden einige Datensätze automatisch angelegt. 
+
+=== Controller Tests 
+Sie sollten Tests für die einzelnen Methoden im Controller schreiben. Diese Tests sollten Sie mit `@WebMvcTest` und Mocks realisieren, d.h. es sollte beim Test kein Webserver hochgefahren werden. 
+
+=== Ende zu Ende Tests
+Zusätzlich sollen Sie mindestens einen Ende-zu-Ende Test schreiben, der folgende Aspekte abdeckt: 
+
+* Hinzufügen einer neuen Kontaktliste 
+* Hinzufügen eines Kontaktes zu einer Kontaktliste
+* Löschen eines Kontaktes von einer Kontaktliste 
+
+Bei dem Ende-zu-Ende Test ist es ein Trade-off (Einhalten des AAA Schemas vs. Test-Performance), ob Sie einen oder mehrere Tests schreiben. 
+
+Die Ende-zu-Ende Tests sollen tatsächlich prüfen, dass die Webanwendung funktioniert. Sie müssen also zum Beispiel einen Post Request absetzen, um den Zustand der Anwendung zu ändern und dann einen Get Request um zu prüfen, ob die Änderung erfolgt ist. 
+
+Es sollen keine Mocks verwendet werden und die Anwendung soll nur über echte HTTP Requests getestet werden.
+
+=== Reflexion Ende-zu-Ende Tests
+
+In unserem Code wird die Datenbank bei jedem Neustart in einen vordefinierten Zustand gebracht. Das ist natürlich bei einem echten System nicht der Fall. Um zu prüfen, was in Wirklichkeit passiert, entfernen sie die beiden `.sql` Dateien aus dem Verzeichnis `src/main/resources` und lassen Sie Ihre Tests einige Male laufen. Was könnte problematisch sein und wie können Sie die Probleme beheben? Es gibt hier verschiedene Lösungen, versuchen Sie mindestens zwei unterschiedliche Wege zu finden. Sie brauchen das nicht zu implementieren.
+
+=== Reflexion Controller Tests
+Die Anwendung hat noch einige Architektur-Schwächen, was die Aufteilung des Codes betrifft. Ändern Sie die Anwendung so ab, dass sie das SRP einhält. Optimalerweise sollten Controller nur auf Services zugreifen. 
+
+=== Fehlerbehandlung
+Einige der Methoden werfen Exceptions, wenn zum Beispiel eine ungültige Detailseite aufgerufen wird. Ergänzen Sie die Anwendung um eine angepasste Fehlerseite, die nur den Fehler anzeigt und keinen Stacktrace enthält. 
+
+== Ablauf der Übung
+
+. Schalten Sie *mindestens* das Mikrofon, aber besser auch die Kamera, ein 
+. Am Anfang gibt es eine kurze Vorstellungsrunde 
+. Es wird festgelegt, in welcher Reihenfolge die "Driver" Rolle übernommen wird
+. Die erste Person teilt Ihren Screen und übernimmt mithilfe von `mob` die Session
+. Es wird an der Problemstellung gemeinsam gearbeitet nach den Regeln des Mob Programmings 
+. Nach ca. der Hälfte der Zeit gibt es ein Feedback durch die Tutorin oder den Tutor
+. Es wird weiter an der Problemstellung gearbeitet
+. ca. 10 Minuten vor Ende der Session bekommen Sie Ihre Abschlussbewertung 
+
+NOTE: Diese praktische Übung wird für die Zulassung gewertet. Sie müssen vorbereitet sein und einen hinreichenden Beitrag leisten. 
+
+== Verhaltensregeln
+
+Wir erwarten von Ihnen einen respektvollen Umgang miteinander. Es gilt grundsätzlich bei uns der https://berlincodeofconduct.org/de/[Berlin Code of Conduct]. Die TutorInnen haben die Aufgabe, die Einhaltung der Regeln zu überwachen und können bei Verstößen gegen den Verhaltenskodex Personen aus der praktischen Übung entfernen.   
+
