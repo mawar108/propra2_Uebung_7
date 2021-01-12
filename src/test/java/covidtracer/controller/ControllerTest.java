@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.contains;
@@ -77,6 +78,15 @@ public class ControllerTest {
 		verify(repo).save(any());
 	}
 
+	@Test
+	void kontaktListeHinzufuegen() throws Exception{
+		when(repo.findById(1L)).thenReturn(Optional.of(klist));
+		mvc.perform(post("/liste/1")
+				.param("vorname", "Hans")
+				.param("nachname", "Peter")
+				.param("kontaktinformationen", "abc"));
+		assertThat(repo.findById(1L).get().getKontakte()).contains(new Kontaktperson("Peter","Hans","abc" ));
 
+	}
 
 }
