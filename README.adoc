@@ -16,7 +16,7 @@ endif::[]
 
 Die Vorbereitungsarbeiten müssen Sie *vor der praktischen Übung* abschließen. 
  
-Wir erwarten von Ihnen, dass Sie verstanden haben, wie Sie Tests für Controller und Ende-zu-Ende Tests für Spring Boot Webanwendungen schreiben. Sie sollten außerdem verstanden haben, welche Teile einer Webanwendung in Controllern bzw. Services untergebracht werden. Sie sollten außerdem auch Fehlerbehandlung in Webanwendungen verstanden haben. 
+Wir erwarten von Ihnen, dass Sie verstanden haben, wie Sie Tests für covidtracer.controller und Ende-zu-Ende Tests für Spring Boot Webanwendungen schreiben. Sie sollten außerdem verstanden haben, welche Teile einer Webanwendung in Controllern bzw. Services untergebracht werden. Sie sollten außerdem auch Fehlerbehandlung in Webanwendungen verstanden haben.
 
 == Ziele der Übung
 
@@ -32,8 +32,8 @@ Die Anwendung verwendet eine H2 Datenbank und Spring Data JDBC. Das Thema Datenb
 
 Die Datenbankinhalte werden beim Neustart der Anwendung gelöscht und es werden einige Datensätze automatisch angelegt. 
 
-=== Controller Tests 
-Sie sollten Tests für die einzelnen Methoden im Controller schreiben. Diese Tests sollten Sie mit `@WebMvcTest` und Mocks realisieren, d.h. es sollte beim Test kein Webserver hochgefahren werden. 
+=== covidtracer.controller Tests
+Sie sollten Tests für die einzelnen Methoden im covidtracer.controller schreiben. Diese Tests sollten Sie mit `@WebMvcTest` und Mocks realisieren, d.h. es sollte beim Test kein Webserver hochgefahren werden.
 
 === Ende zu Ende Tests
 Zusätzlich sollen Sie mindestens einen Ende-zu-Ende Test schreiben, der folgende Aspekte abdeckt: 
@@ -52,8 +52,8 @@ Es sollen keine Mocks verwendet werden und die Anwendung soll nur über echte HT
 
 In unserem Code wird die Datenbank bei jedem Neustart in einen vordefinierten Zustand gebracht. Das ist natürlich bei einem echten System nicht der Fall. Um zu prüfen, was in Wirklichkeit passiert, entfernen sie die beiden `.sql` Dateien aus dem Verzeichnis `src/main/resources` und lassen Sie Ihre Tests einige Male laufen. Was könnte problematisch sein und wie können Sie die Probleme beheben? Es gibt hier verschiedene Lösungen, versuchen Sie mindestens zwei unterschiedliche Wege zu finden. Sie brauchen das nicht zu implementieren.
 
-=== Reflexion Controller Tests
-Die Anwendung hat noch einige Architektur-Schwächen, was die Aufteilung des Codes betrifft. Ändern Sie die Anwendung so ab, dass sie das SRP einhält. Optimalerweise sollten Controller nur auf Services zugreifen. 
+=== Reflexion covidtracer.controller Tests
+Die Anwendung hat noch einige Architektur-Schwächen, was die Aufteilung des Codes betrifft. Ändern Sie die Anwendung so ab, dass sie das SRP einhält. Optimalerweise sollten covidtracer.controller nur auf Services zugreifen.
 
 === Fehlerbehandlung
 Einige der Methoden werfen Exceptions, wenn zum Beispiel eine ungültige Detailseite aufgerufen wird. Ergänzen Sie die Anwendung um eine angepasste Fehlerseite, die nur den Fehler anzeigt und keinen Stacktrace enthält. 
