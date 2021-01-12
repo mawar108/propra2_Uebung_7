@@ -17,9 +17,12 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.core.StringContains.containsString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.contains;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -63,5 +66,17 @@ public class ControllerTest {
 				.andExpect(content().string(containsString("Fuchs")))
 				.andExpect(status().isOk());
 	}
+
+	@Test
+	void erzeugeListe() throws Exception {
+		mvc.perform(post("/")
+			.param("vorname", "Hans")
+			.param("nachname", "Peter"))
+		.andExpect(status().is3xxRedirection());
+
+		verify(repo).save(any());
+	}
+
+
 
 }
